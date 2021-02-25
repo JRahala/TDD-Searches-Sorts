@@ -49,9 +49,9 @@ class TestDrivenDevelopmentTests: XCTestCase {
     
     func testBinaryErroneous(){
         
-        XCTAssertEqual(try Searcher.binarySearch(intArray: "TEXT IS COOL", target: 4), 3)
-        XCTAssertEqual(try Searcher.binarySearch(intArray: [10,56,125,126], target: 10), 0)
-        XCTAssertEqual(try Searcher.binarySearch(intArray: [-23,0,1,19], target: 0), 1)
+        XCTAssertThrowsError(try Searcher.binarySearch(intArray: "TEXT IS COOL", target: 4))
+        XCTAssertThrowsError(try Searcher.binarySearch(intArray: [1,2,3], target: true))
+        XCTAssertThrowsError(try Searcher.binarySearch(intArray: 9.283, target: "TARGET"))
         
     }
     
@@ -73,29 +73,59 @@ class TestDrivenDevelopmentTests: XCTestCase {
         
     }
     
-    func testMergeSortErroneous(){
-        
-    }
-    
     func testMergeSortBoundary(){
         
-        XCTAssertEqual(Sorter.mergeSort(intArray: [0]), [0])
-        XCTAssertEqual(Sorter.mergeSort(intArray: [0,0,0,0,0,0]), [0,0,0,0,0,0])
+        XCTAssertEqual(Sorter.mergeSort(intArray: []), [])
+        XCTAssertEqual(Sorter.mergeSort(intArray: [6,5,4,3,2,1]), [1,2,3,4,5,6])
         XCTAssertEqual(Sorter.mergeSort(intArray: [1000,-1000,2000000000]), [-1000,1000,2000000000])
         
     }
     
     func testBubbleSortValid(){
         
-        
+        XCTAssertEqual(Sorter.bubbleSort(intArray: [8, 8, 2, 0, 10, 10, 9]), [0, 2, 8, 8, 9, 10, 10])
+        XCTAssertEqual(Sorter.bubbleSort(intArray: [9, 71, -20, 60, -70, 66, 59, -75]), [-75, -70, -20, 9, 59, 60, 66, 71])
+        XCTAssertEqual(Sorter.bubbleSort(intArray: [-46, -26, 62, 40, 70]), [-46, -26, 40, 62, 70])
         
     }
     
+    func testBubbleSortBoundary(){
+        
+        XCTAssertEqual(Sorter.bubbleSort(intArray: []), [])
+        XCTAssertEqual(Sorter.bubbleSort(intArray: [6,5,4,3,2,1]), [1,2,3,4,5,6])
+        XCTAssertEqual(Sorter.bubbleSort(intArray: [1000,-1000,2000000000]), [-1000,1000,2000000000])
+        
+    }
+
     func testInsertionSortValid(){
+        
+        XCTAssertEqual(Sorter.insertionSort(intArray: [8, 8, 2, 0, 10, 10, 9]), [0, 2, 8, 8, 9, 10, 10])
+        XCTAssertEqual(Sorter.insertionSort(intArray: [9, 71, -20, 60, -70, 66, 59, -75]), [-75, -70, -20, 9, 59, 60, 66, 71])
+        XCTAssertEqual(Sorter.insertionSort(intArray: [-46, -26, 62, 40, 70]), [-46, -26, 40, 62, 70])
+        
+    }
+    
+    func testInsertionSortBoundary(){
+        
+        XCTAssertEqual(Sorter.insertionSort(intArray: []), [])
+        XCTAssertEqual(Sorter.insertionSort(intArray: [6,5,4,3,2,1]), [1,2,3,4,5,6])
+        XCTAssertEqual(Sorter.insertionSort(intArray: [1000,-1000,2000000000]), [-1000,1000,2000000000])
         
     }
     
     func testQuickSortValid(){
+        
+        XCTAssertEqual(Sorter.quickSort(intArray: [8, 8, 2, 0, 10, 10, 9]), [0, 2, 8, 8, 9, 10, 10])
+        XCTAssertEqual(Sorter.quickSort(intArray: [9, 71, -20, 60, -70, 66, 59, -75]), [-75, -70, -20, 9, 59, 60, 66, 71])
+        XCTAssertEqual(Sorter.quickSort(intArray: [-46, -26, 62, 40, 70]), [-46, -26, 40, 62, 70])
+        
+    }
+    
+    func testQuickSortBoundary(){
+        
+        XCTAssertEqual(Sorter.quickSort(intArray: []), [])
+        XCTAssertEqual(Sorter.quickSort(intArray: [6,5,4,3,2,1]), [1,2,3,4,5,6])
+        XCTAssertEqual(Sorter.quickSort(intArray: [1000,-1000,2000000000]), [-1000,1000,2000000000])
         
     }
 

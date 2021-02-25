@@ -114,18 +114,19 @@ class Sort{
         
     }
     
-    func bubbleSort(intArray: inout [Int]) -> [Int]{
+    func bubbleSort(intArray: [Int]) -> [Int]{
         
         var swaps = false
+        var intArray = intArray
         
         for i in 0..<intArray.count{
-            for j in i..<intArray.count{
-                if (intArray[i] > intArray[j]){
+            for j in 0..<intArray.count - i - 1{
+                if (intArray[j] > intArray[j + 1]){
                     swaps = true
                     
-                    let temp = intArray[i]
-                    intArray[i] = intArray[j]
-                    intArray[j] = temp
+                    let temp = intArray[j]
+                    intArray[j] = intArray[j+1]
+                    intArray[j+1] = temp
                 }
             }
             if (swaps == false){
@@ -136,8 +137,9 @@ class Sort{
         
     }
     
-    func quickSort(intArray: inout[Int]) -> [Int]{
+    func quickSort(intArray: [Int]) -> [Int]{
         
+        var intArray = intArray
         if intArray.count <= 1{
             return intArray
         }
@@ -157,11 +159,11 @@ class Sort{
         }
         
         var result = [Int]()
-        for number in quickSort(intArray: &lower){
+        for number in quickSort(intArray: lower){
             result.append(number)
         }
         result.append(pivot)
-        for number in quickSort(intArray: &upper){
+        for number in quickSort(intArray: upper){
             result.append(number)
         }
         return result
@@ -169,7 +171,10 @@ class Sort{
     }
         
     
-    func insertionSort(intArray: inout [Int]) -> [Int]{
+    func insertionSort(intArray: [Int]) -> [Int]{
+        
+        var intArray = intArray
+        if intArray.count == 0{ return [] }
         
         for i in 1..<intArray.count{
             let value = intArray[i]
